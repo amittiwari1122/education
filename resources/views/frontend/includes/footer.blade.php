@@ -8,6 +8,7 @@
     $instagram = '';
     $youtube = '';
     $logo = '';
+    $footerDescription = '';
     ?>
     @foreach (App\Models\MainDetail::select('name','value','url')->get() as $item)
     <?php
@@ -41,6 +42,15 @@
     ?>
     @endforeach
 
+    @foreach (App\Models\HomePage::select('name','title','description','image')->get() as $homeItem)
+    <?php
+
+if ($homeItem->name == 'footer_message') {
+    $footerDescription = $homeItem->description;
+}
+    ?>
+    @endforeach
+
     <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
         <div class="container mt-5 pt-5">
             <div class="row">
@@ -50,9 +60,8 @@
                                 class="fa fa-book-reader mr-3"></i><?php echo $logo; ?>
                         </h1>
                     </a>
-                    <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr. Ipsum ea lorem at et diam est,
-                        tempor rebum ipsum sit ea tempor stet et consetetur dolores. Justo stet diam ipsum lorem vero
-                        clita diam</p>
+                    <p class="m-0"><?php echo $footerDescription; ?>
+                    </p>
                 </div>
                 <div class="col-md-6 mb-5">
                     <!-- <h3 class="text-white mb-4">Newsletter</h3>
@@ -130,8 +139,8 @@
                     </p>
                 </div>
                 <div class="col-md-6 text-center text-md-right">
-                    <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
-                    </p>
+                    <!-- <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
+                    </p> -->
                 </div>
             </div>
         </div>

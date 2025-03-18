@@ -13,6 +13,21 @@ $linkedin = '';
 $instagram = '';
 $youtube = '';
 $logo = '';
+$testimonialTitle = '';
+$testimonialDescription = '';
+$testimonialImage = '';
+$aboutTitle = '';
+$aboutDescription = '';
+$aboutImage = '';
+$whyTitle = '';
+$whyDescription = '';
+$whyImage = '';
+$instTitle = '';
+$instDescription = '';
+$instImage = '';
+$courseTitle = '';
+$courseDescription = '';
+$courseImage = '';
 ?>
 @foreach (App\Models\MainDetail::select('name','value','url')->get() as $item)
 <?php
@@ -58,6 +73,21 @@ if ($homeItem->name == 'why_choose_us') {
     $whyDescription = $homeItem->description;
     $whyImage = $homeItem->image;
 }
+if ($homeItem->name == 'our_courses') {
+    $courseTitle = $homeItem->title;
+    $courseDescription = $homeItem->description;
+    $courseImage = $homeItem->image;
+}
+if ($homeItem->name == 'instructors') {
+    $instTitle = $homeItem->title;
+    $instDescription = $homeItem->description;
+    $instImage = $homeItem->image;
+}
+if ($homeItem->name == 'testimonial') {
+    $testimonialTitle = $homeItem->title;
+    $testimonialDescription = $homeItem->description;
+    $testimonialImage = $homeItem->image;
+}
 ?>
 @endforeach
 
@@ -67,19 +97,18 @@ if ($homeItem->name == 'why_choose_us') {
         <div class="row">
             <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100" src="img/about.jpg" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100"
+                        src="<?php echo $aboutImage; ?>"
+                        style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-7">
                 <div class="section-title position-relative mb-4">
                     <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">About Us</h6>
-                    <h1 class="display-4">First Choice For Online Education Anywhere</h1>
+                    <h1 class="display-4"><?php echo $aboutTitle; ?>
+                    </h1>
                 </div>
-                <p>Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor
-                    voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum
-                    et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur
-                    takimata eirmod, dolores takimata consetetur invidunt magna dolores aliquyam dolores dolore.
-                    Amet erat amet et magna</p>
+                <p><?php echo $aboutDescription; ?></p>
                 <div class="row pt-3 mx-0">
                     <div class="col-3 px-0">
                         <div class="bg-success text-center p-4">
@@ -123,11 +152,11 @@ if ($homeItem->name == 'why_choose_us') {
                 <div class="section-title position-relative mb-4">
                     <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Why Choose Us?
                     </h6>
-                    <h1 class="display-4">Why You Should Start Learning with Us?</h1>
+                    <h1 class="display-4"><?php echo $whyTitle; ?>
+                    </h1>
                 </div>
-                <p class="mb-4 pb-2">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores
-                    amet voluptua duo dolores et sit ipsum rebum, sadipscing et erat eirmod diam kasd labore clita
-                    est. Diam sanctus gubergren sit rebum clita amet.</p>
+                <p class="mb-4 pb-2"><?php echo $whyDescription; ?>
+                </p>
                 <div class="d-flex mb-3">
                     <div class="btn-icon bg-primary mr-4">
                         <i class="fa fa-2x fa-graduation-cap text-white"></i>
@@ -161,7 +190,9 @@ if ($homeItem->name == 'why_choose_us') {
             </div>
             <div class="col-lg-5" style="min-height: 500px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100" src="img/feature.jpg" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100"
+                        src="<?php echo $whyImage; ?>"
+                        style="object-fit: cover;">
                 </div>
             </div>
         </div>
@@ -176,7 +207,8 @@ if ($homeItem->name == 'why_choose_us') {
         <div class="col-lg-6">
             <div class="section-title text-center position-relative mb-4">
                 <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Our Courses</h6>
-                <h1 class="display-4">Checkout New Releases Of Our Courses</h1>
+                <h1 class="display-4"><?php echo $courseTitle; ?>
+                </h1>
             </div>
         </div>
     </div>
@@ -320,10 +352,10 @@ if ($homeItem->name == 'why_choose_us') {
     <div class="container py-5">
         <div class="section-title text-center position-relative mb-5">
             <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Instructors</h6>
-            <h1 class="display-4">Meet Our Instructors</h1>
+            <h1 class="display-4"><?php echo $instTitle; ?></h1>
         </div>
         <div class="owl-carousel team-carousel position-relative" style="padding: 0 30px;">
-            @foreach (App\Models\Instructor::get() as $instructorItem)
+            @foreach (App\Models\Instructor::where('show_home', '1')->get() as $instructorItem)
             <div class="team-item">
                 <img class="img-fluid w-100"
                     src="<?php echo $instructorItem->image; ?>"
@@ -378,40 +410,32 @@ if ($homeItem->name == 'why_choose_us') {
             <div class="col-lg-5 mb-5 mb-lg-0">
                 <div class="section-title position-relative mb-4">
                     <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Testimonial</h6>
-                    <h1 class="display-4">What Say Our Students</h1>
+                    <h1 class="display-4">
+                        <?php echo $testimonialTitle; ?>
+                    </h1>
                 </div>
-                <p class="m-0">Dolor est dolores et nonumy sit labore dolores est sed rebum amet, justo duo ipsum
-                    sanctus dolore magna rebum sit et. Diam lorem ea sea at. Nonumy et at at sed justo est nonumy
-                    tempor. Vero sea ea eirmod, elitr ea amet diam ipsum at amet. Erat sed stet eos ipsum diam</p>
+                <p class="m-0"><?php echo $testimonialDescription; ?>
+                </p>
             </div>
             <div class="col-lg-7">
                 <div class="owl-carousel testimonial-carousel">
+                    @foreach (App\Models\Testimonial::where('show_home', '1')->get() as $testimonalItem)
                     <div class="bg-white p-5">
                         <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                        <p>Sed et elitr ipsum labore dolor diam, ipsum duo vero sed sit est est ipsum eos clita est
-                            ipsum. Est nonumy tempor at kasd. Sed at dolor duo ut dolor, et justo erat dolor magna
-                            sed stet amet elitr duo lorem</p>
+                        <p><?php echo $testimonalItem->message; ?>
+                        </p>
                         <div class="d-flex flex-shrink-0 align-items-center mt-4">
-                            <img class="img-fluid mr-4" src="img/testimonial-2.jpg" alt="">
+                            <img class="img-fluid mr-4"
+                                src="<?php echo $testimonalItem->image; ?>"
+                                alt="">
                             <div>
-                                <h5>Student Name</h5>
-                                <span>Web Design</span>
+                                <h5><?php echo $testimonalItem->name; ?>
+                                </h5>
+                                <span><?php echo $testimonalItem->title; ?></span>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white p-5">
-                        <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                        <p>Sed et elitr ipsum labore dolor diam, ipsum duo vero sed sit est est ipsum eos clita est
-                            ipsum. Est nonumy tempor at kasd. Sed at dolor duo ut dolor, et justo erat dolor magna
-                            sed stet amet elitr duo lorem</p>
-                        <div class="d-flex flex-shrink-0 align-items-center mt-4">
-                            <img class="img-fluid mr-4" src="img/testimonial-1.jpg" alt="">
-                            <div>
-                                <h5>Student Name</h5>
-                                <span>Web Design</span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
