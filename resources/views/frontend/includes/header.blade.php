@@ -9,7 +9,7 @@ $instagram = '';
 $youtube = '';
 $logo = '';
 ?>
-@foreach (App\Models\MainDetail::select('name','value','url')->get() as $item)
+@foreach (App\Models\MainDetail::select('name','value','url','description')->get() as $item)
 <?php
 if ($item->name == 'call_us') {
     $mobile = $item->value;
@@ -35,6 +35,11 @@ if ($item->name == 'youtube_link') {
 if ($item->name == 'logo') {
     $logo = $item->value;
 }
+if ($item->name == 'banner_content') {
+    $first = $item->value;
+    $second = $item->description;
+}
+
 ?>
 @endforeach
 
@@ -128,8 +133,10 @@ $page = end($link_array); ?>
 <!-- Header Start -->
 <div class="jumbotron jumbotron-fluid position-relative overlay-bottom" style="margin-bottom: 90px;">
     <div class="container text-center my-5 py-5">
-        <h1 class="text-white mt-4 mb-4">Learn From Home</h1>
-        <h1 class="text-white display-1 mb-5">Education Courses</h1>
+        <h1 class="text-white mt-4 mb-4"><?php echo $first; ?>
+        </h1>
+        <h1 class="text-white display-1 mb-5"><?php echo $second; ?>
+        </h1>
         <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
             <div class="input-group">
                 <!-- <div class="input-group-prepend">

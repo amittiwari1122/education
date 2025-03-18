@@ -46,6 +46,21 @@ if ($item->name == 'our_location') {
 ?>
 @endforeach
 
+@foreach (App\Models\HomePage::select('name','title','description','image')->get() as $homeItem)
+<?php
+if ($homeItem->name == 'about') {
+    $aboutTitle = $homeItem->title;
+    $aboutDescription = $homeItem->description;
+    $aboutImage = $homeItem->image;
+}
+if ($homeItem->name == 'why_choose_us') {
+    $whyTitle = $homeItem->title;
+    $whyDescription = $homeItem->description;
+    $whyImage = $homeItem->image;
+}
+?>
+@endforeach
+
 <!-- About Start -->
 <div class="container-fluid py-5">
     <div class="container py-5">
@@ -308,62 +323,48 @@ if ($item->name == 'our_location') {
             <h1 class="display-4">Meet Our Instructors</h1>
         </div>
         <div class="owl-carousel team-carousel position-relative" style="padding: 0 30px;">
+            @foreach (App\Models\Instructor::get() as $instructorItem)
             <div class="team-item">
-                <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
+                <img class="img-fluid w-100"
+                    src="<?php echo $instructorItem->image; ?>"
+                    alt="">
                 <div class="bg-light text-center p-4">
-                    <h5 class="mb-3">Instructor Name</h5>
-                    <p class="mb-2">Web Design & Development</p>
+                    <h5 class="mb-3">
+                        <?php echo $instructorItem->name; ?>
+                    </h5>
+                    <p class="mb-2">
+                        <?php echo $instructorItem->subject; ?>
+                    </p>
                     <div class="d-flex justify-content-center">
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
+                        @if($instructorItem->twitter_link)
+                        <a class="mx-1 p-1"
+                            href="<?php echo $instructorItem->twitter_link; ?>"><i
+                                class="fab fa-twitter"></i></a>
+                        @endif
+                        @if($instructorItem->facebook_link)
+                        <a class="mx-1 p-1"
+                            href="<?php echo $instructorItem->facebook_link; ?>"><i
+                                class="fab fa-facebook-f"></i></a>
+                        @endif
+                        @if($instructorItem->linkedin_link)
+                        <a class="mx-1 p-1"
+                            href="<?php echo $instructorItem->linkedin_link; ?>"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        @endif
+                        @if($instructorItem->instagram_link)
+                        <a class="mx-1 p-1"
+                            href="<?php echo $instructorItem->instagram_link; ?>"><i
+                                class="fab fa-instagram"></i></a>
+                        @endif
+                        @if($instructorItem->youtube_link)
+                        <a class="mx-1 p-1"
+                            href="<?php echo $instructorItem->youtube_link; ?>"><i
+                                class="fab fa-youtube"></i></a>
+                        @endif
                     </div>
                 </div>
             </div>
-            <div class="team-item">
-                <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                <div class="bg-light text-center p-4">
-                    <h5 class="mb-3">Instructor Name</h5>
-                    <p class="mb-2">Web Design & Development</p>
-                    <div class="d-flex justify-content-center">
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="team-item">
-                <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                <div class="bg-light text-center p-4">
-                    <h5 class="mb-3">Instructor Name</h5>
-                    <p class="mb-2">Web Design & Development</p>
-                    <div class="d-flex justify-content-center">
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="team-item">
-                <img class="img-fluid w-100" src="img/team-4.jpg" alt="">
-                <div class="bg-light text-center p-4">
-                    <h5 class="mb-3">Instructor Name</h5>
-                    <p class="mb-2">Web Design & Development</p>
-                    <div class="d-flex justify-content-center">
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                        <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
