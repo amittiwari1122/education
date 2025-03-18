@@ -96,18 +96,17 @@ if ($item->name == 'banner_content') {
         </button>
         <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
             <div class="navbar-nav mx-auto py-0">
-                <?php $link_array = explode('/', $_SERVER['PHP_SELF']);
-$page = end($link_array); ?>
+                <?php $link_array = $_SERVER['REQUEST_URI']; ?>
                 <a href="/"
-                    class="nav-item nav-link <?php echo($page == 'index.php' ? ' active' : ''); ?>">Home</a>
+                    class="nav-item nav-link <?php echo($link_array == '/' ? ' active' : ''); ?>">Home</a>
                 <a href="/about"
-                    class="nav-item nav-link <?php echo($page == 'about' ? ' active' : ''); ?>">About</a>
+                    class="nav-item nav-link <?php echo($link_array == '/about' ? ' active' : ''); ?>">About</a>
                 <a href="/course"
-                    class="nav-item nav-link <?php echo($page == 'course' ? ' active' : ''); ?>">Courses</a>
+                    class="nav-item nav-link <?php echo($link_array == '/course' ? ' active' : ''); ?>">Courses</a>
                 <a href="/instructor"
-                    class="nav-item nav-link <?php echo($page == 'instructor' ? ' active' : ''); ?>">Instructors</a>
+                    class="nav-item nav-link <?php echo($link_array == '/instructor' ? ' active' : ''); ?>">Instructors</a>
                 <a href="/testimonial"
-                    class="nav-item nav-link <?php echo($page == 'testimonial' ? ' active' : ''); ?>">Testimonial</a>
+                    class="nav-item nav-link <?php echo($link_array == '/testimonial' ? ' active' : ''); ?>">Testimonial</a>
                 <!-- <a href="/feature"
                     class="nav-item nav-link <?php //echo($page == 'feature' ? ' active' : '');?>">Our
                 Features</a> -->
@@ -121,7 +120,7 @@ $page = end($link_array); ?>
                     </div>
                 </div> -->
                 <a href="/contact"
-                    class="nav-item nav-link <?php echo($page == 'contact' ? ' active' : ''); ?>">Contact</a>
+                    class="nav-item nav-link <?php echo($link_array == '/contact' ? ' active' : ''); ?>">Contact</a>
             </div>
             <!-- <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Join Us</a> -->
         </div>
