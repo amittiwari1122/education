@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteController;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ Route::get('/instructor', [WebsiteController::class, 'instructor']);
 Route::get('/testimonial', [WebsiteController::class, 'testimonial']);
 Route::get('/feature', [WebsiteController::class, 'feature']);
 Route::get('/contact', [WebsiteController::class, 'contact']);
+
+Route::post('/sendEmail', [WebsiteController::class, 'sendEmail']);

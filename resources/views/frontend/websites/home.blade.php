@@ -109,7 +109,7 @@ if ($homeItem->name == 'testimonial') {
                     </h1>
                 </div>
                 <p><?php echo $aboutDescription; ?></p>
-                <div class="row pt-3 mx-0">
+                <!-- <div class="row pt-3 mx-0">
                     <div class="col-3 px-0">
                         <div class="bg-success text-center p-4">
                             <h1 class="text-white" data-toggle="counter-up">123</h1>
@@ -136,7 +136,7 @@ if ($homeItem->name == 'testimonial') {
                             <h6 class="text-uppercase text-white">Happy<span class="d-block">Students</span></h6>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -162,9 +162,9 @@ if ($homeItem->name == 'testimonial') {
                         <i class="fa fa-2x fa-graduation-cap text-white"></i>
                     </div>
                     <div class="mt-n1">
-                        <h4>Skilled Instructors</h4>
-                        <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no
-                            nonumy et eos dolor magna ipsum.</p>
+                        <h4>Expert Faculty</h4>
+                        <p>Our team of experienced educators and mentors is committed to providing quality teaching with
+                            personalized attention to every student.</p>
                     </div>
                 </div>
                 <div class="d-flex mb-3">
@@ -172,9 +172,9 @@ if ($homeItem->name == 'testimonial') {
                         <i class="fa fa-2x fa-certificate text-white"></i>
                     </div>
                     <div class="mt-n1">
-                        <h4>International Certificate</h4>
-                        <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no
-                            nonumy et eos dolor magna ipsum.</p>
+                        <h4>Comprehensive Curriculum</h4>
+                        <p>We offer in-depth courses covering all competitive exams, from foundational to advanced
+                            levels, ensuring that students are thoroughly prepared.</p>
                     </div>
                 </div>
                 <div class="d-flex">
@@ -182,9 +182,10 @@ if ($homeItem->name == 'testimonial') {
                         <i class="fa fa-2x fa-book-reader text-white"></i>
                     </div>
                     <div class="mt-n1">
-                        <h4>Online Classes</h4>
-                        <p class="m-0">Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita
-                            magna kasd no nonumy et eos dolor magna ipsum.</p>
+                        <h4>Tailored Programs</h4>
+                        <p class="m-0">Every student learns differently. That’s why we offer flexible learning plans
+                            that are designed to cater to individual needs, ensuring personalized growth and
+                            preparation.</p>
                     </div>
                 </div>
             </div>
@@ -486,24 +487,33 @@ if ($homeItem->name == 'testimonial') {
                     <h1 class="display-4">Send Us A Message</h1>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form method="POST" action="/sendEmail">
+                        @csrf
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                <input type="text" name="name"
+                                    class="form-control border-top-0 border-right-0 border-left-0 p-0"
                                     placeholder="Your Name" required="required">
                             </div>
                             <div class="col-6 form-group">
-                                <input type="email" class="form-control border-top-0 border-right-0 border-left-0 p-0"
-                                    placeholder="Your Email" required="required">
+                                <input type="text" name="contact"
+                                    class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                    placeholder="Contact No." required="required">
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0"
-                                placeholder="Subject" required="required">
+                            <input type="email" name="email"
+                                class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                placeholder="Your Email" required="required">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5"
-                                placeholder="Message" required="required"></textarea>
+                            <input type="text" name="subject"
+                                class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Subject"
+                                required="required">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                rows="5" placeholder="Message" required="required"></textarea>
                         </div>
                         <div>
                             <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button>

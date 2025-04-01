@@ -3,6 +3,26 @@
 @section(section: 'content')
 
 @include('../frontend/includes.header')
+<?php
+$mobile = '';
+$email = '';
+$location = '';
+?>
+@foreach (App\Models\MainDetail::select('name','value','url')->get() as $item)
+<?php
+if ($item->name == 'call_us') {
+    $mobile = $item->value;
+}
+if ($item->name == 'email_us') {
+    $email = $item->value;
+}
+
+if ($item->name == 'our_location') {
+    $location = $item->value;
+}
+?>
+@endforeach
+
 
 <!-- Contact Start -->
 <div class="container-fluid py-5">
@@ -16,7 +36,8 @@
                         </div>
                         <div class="mt-n1">
                             <h4>Our Location</h4>
-                            <p class="m-0">123 Street, New York, USA</p>
+                            <p class="m-0"><?php echo $location; ?>
+                            </p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-5">
@@ -25,7 +46,7 @@
                         </div>
                         <div class="mt-n1">
                             <h4>Call Us</h4>
-                            <p class="m-0">+012 345 6789</p>
+                            <p class="m-0"><?php echo $mobile; ?></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
@@ -34,7 +55,7 @@
                         </div>
                         <div class="mt-n1">
                             <h4>Email Us</h4>
-                            <p class="m-0">info@example.com</p>
+                            <p class="m-0"><?php echo $email; ?></p>
                         </div>
                     </div>
                 </div>
@@ -45,24 +66,33 @@
                     <h1 class="display-4">Send Us A Message</h1>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form method="POST" action="/sendEmail">
+                        @csrf
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                <input type="text" name="name"
+                                    class="form-control border-top-0 border-right-0 border-left-0 p-0"
                                     placeholder="Your Name" required="required">
                             </div>
                             <div class="col-6 form-group">
-                                <input type="email" class="form-control border-top-0 border-right-0 border-left-0 p-0"
-                                    placeholder="Your Email" required="required">
+                                <input type="text" name="contact"
+                                    class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                    placeholder="Contact No." required="required">
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0"
-                                placeholder="Subject" required="required">
+                            <input type="email" name="email"
+                                class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                placeholder="Your Email" required="required">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5"
-                                placeholder="Message" required="required"></textarea>
+                            <input type="text" name="subject"
+                                class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Subject"
+                                required="required">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                rows="5" placeholder="Message" required="required"></textarea>
                         </div>
                         <div>
                             <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button>
