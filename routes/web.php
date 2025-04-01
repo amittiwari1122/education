@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Mail;
 Route::get('/', [WebsiteController::class, 'home']);
 Route::get('/about', [WebsiteController::class, 'about']);
 Route::get('/course', [WebsiteController::class, 'course']);
-Route::get('/course_details', [WebsiteController::class, 'course_details']);
+Route::get('/courseDetails/:id', [WebsiteController::class, 'courseDetails']);
 Route::get('/instructor', [WebsiteController::class, 'instructor']);
 Route::get('/testimonial', [WebsiteController::class, 'testimonial']);
 Route::get('/feature', [WebsiteController::class, 'feature']);

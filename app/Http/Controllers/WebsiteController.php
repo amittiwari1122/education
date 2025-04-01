@@ -36,6 +36,14 @@ class WebsiteController extends BaseController
         return view('frontend.websites.course');
     }
 
+    public function courseDetails($id)
+    {
+        // Fetch all products from the database
+        $products = '';
+        // Return a view with the products data
+        return view('frontend.websites.courseDetails');
+    }
+
     public function contact()
     {
         // Fetch all products from the database
