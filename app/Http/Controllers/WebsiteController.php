@@ -73,7 +73,7 @@ class WebsiteController extends BaseController
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'mobile' => $request->contact,
+            'contact' => $request->contact,
             'subject' => $request->subject,
             'message' => $request->message,
         ];
