@@ -91,4 +91,28 @@ class WebsiteController extends BaseController
         return redirect()->back()->with('success', 'Email sent successfully!');
         //return response()->json(['message' => 'Email sent successfully!']);
     }
+
+    public function privacyPolicy()
+    {
+        // Fetch all products from the database
+        $products = '';
+        // Return a view with the products data
+        return view('frontend.websites.privacy');
+    }
+
+    public function termCondition()
+    {
+        // Fetch all products from the database
+        $products = '';
+        // Return a view with the products data
+        return view('frontend.websites.termCondition');
+    }
+
+    public function faq()
+    {
+        // Fetch all products from the database
+        $products = '';
+        // Return a view with the products data
+        return view('frontend.websites.faq');
+    }
 }
