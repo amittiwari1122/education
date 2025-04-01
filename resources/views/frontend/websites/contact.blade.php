@@ -66,6 +66,11 @@ if ($item->name == 'our_location') {
                     <h1 class="display-4">Send Us A Message</h1>
                 </div>
                 <div class="contact-form">
+                    @if(session('success'))
+                    <div style="color: green; font-weight: bold;">
+                        {{ session('success') }}
+                    </div>
+                    @endif
                     <form method="POST" action="/sendEmail">
                         @csrf
                         <div class="row">
